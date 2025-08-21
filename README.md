@@ -27,6 +27,8 @@ npm install
 ```
 &&
 
+[![Star History Chart](https://api.star-history.com/svg?repos=sapthesh/Birthday&type=Date)](https://www.star-history.com/#sapthesh/Birthday&Date)
+
 ```
 npm run server-node
 ```
