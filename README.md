@@ -27,10 +27,10 @@ npm install
 ```
 &&
 
-[![Star History Chart](https://api.star-history.com/svg?repos=sapthesh/Birthday&type=Date)](https://www.star-history.com/#sapthesh/Birthday&Date)
-
 ```
 npm run server-node
 ```
 visit http://localhost:8081 in your browser.
+
+[![Star History Chart](https://api.star-history.com/svg?repos=sapthesh/Birthday&type=Date)](https://www.star-history.com/#sapthesh/Birthday&Date)
 
