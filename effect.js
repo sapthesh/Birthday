@@ -166,6 +166,17 @@ $('document').ready(function(){
 	
 	$('#story').click(function(){
 		$(this).fadeOut('slow');
+	
+		// 🎈 Make balloons fly away and disappear
+		$('#b1,#b2,#b3,#b4,#b5,#b6,#b7').each(function(){
+			$(this).stop().animate({
+				top: "-=600",   // move balloons up
+				opacity: 0     // fade out
+			}, 2000);
+		});
+		$('.balloon-border').fadeOut(2000);
+	
+		// 🎂 Hide cake before story begins
 		$('.cake').fadeOut('fast').promise().done(function(){
 			$('.message').fadeIn('slow');
 			// Show the photo gallery when message starts
@@ -175,7 +186,7 @@ $('document').ready(function(){
 		});
 		
 		var i;
-
+	
 		function msgLoop (i) {
 			$("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
 			i=i+1;
@@ -191,15 +202,14 @@ $('document').ready(function(){
 			else{
 				msgLoop(i);
 			}			
-
+	
 		});
 			// body...
 		}
 		
 		msgLoop(0);
-		
 	});
-});
+});	
 
 
 
