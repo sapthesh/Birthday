@@ -199,7 +199,7 @@ $('document').ready(function(){
 		msgLoop(0);
 		
 	});
-
+});
 
 
 
