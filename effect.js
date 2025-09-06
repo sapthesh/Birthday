@@ -168,6 +168,10 @@ $('document').ready(function(){
 		$(this).fadeOut('slow');
 		$('.cake').fadeOut('fast').promise().done(function(){
 			$('.message').fadeIn('slow');
+			// Show the photo gallery when message starts
+			setTimeout(function(){
+				$('#photo-gallery').fadeIn(2000);
+			}, 2000); // Show photos 2 seconds after message starts
 		});
 		
 		var i;
@@ -179,6 +183,8 @@ $('document').ready(function(){
 			if(i==50){
 				$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
 					$('.cake').fadeIn('fast');
+					// Hide photos when cake comes back
+					$('#photo-gallery').fadeOut(1000);
 				});
 				
 			}
@@ -193,7 +199,6 @@ $('document').ready(function(){
 		msgLoop(0);
 		
 	});
-});
 
 
 
