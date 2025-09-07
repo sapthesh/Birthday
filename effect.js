@@ -166,12 +166,27 @@ $('document').ready(function(){
 	
 	$('#story').click(function(){
 		$(this).fadeOut('slow');
+	
+		// 🎈 Make balloons fly away and disappear
+		$('#b1,#b2,#b3,#b4,#b5,#b6,#b7').each(function(){
+			$(this).stop().animate({
+				top: "-=600",   // move balloons up
+				opacity: 0     // fade out
+			}, 2000);
+		});
+		$('.balloon-border').fadeOut(2000);
+	
+		// 🎂 Hide cake before story begins
 		$('.cake').fadeOut('fast').promise().done(function(){
 			$('.message').fadeIn('slow');
+			// Show the photo gallery when message starts
+			setTimeout(function(){
+				$('#photo-gallery').fadeIn(2000);
+			}, 2000); // Show photos 2 seconds after message starts
 		});
 		
 		var i;
-
+	
 		function msgLoop (i) {
 			$("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
 			i=i+1;
@@ -179,22 +194,22 @@ $('document').ready(function(){
 			if(i==50){
 				$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
 					$('.cake').fadeIn('fast');
+					// Hide photos when cake comes back
+					$('#photo-gallery').fadeOut(1000);
 				});
 				
 			}
 			else{
 				msgLoop(i);
 			}			
-
+	
 		});
 			// body...
 		}
 		
 		msgLoop(0);
-		
 	});
-});
-
+});	
 
 
 
