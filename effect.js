@@ -3,18 +3,33 @@ $(window).load(function(){
 	$('.container').fadeIn('fast');
 });
 $('document').ready(function(){
-		var vw;
-		$(window).resize(function(){
-			 vw = $(window).width()/2;
-			$('#b1,#b2,#b3,#b4,#b5,#b6,#b7').stop();
-			$('#b11').animate({top:240, left: vw-350},500);
-			$('#b22').animate({top:240, left: vw-250},500);
-			$('#b33').animate({top:240, left: vw-150},500);
-			$('#b44').animate({top:240, left: vw-50},500);
-			$('#b55').animate({top:240, left: vw+50},500);
-			$('#b66').animate({top:240, left: vw+150},500);
-			$('#b77').animate({top:240, left: vw+250},500);
-		});
+        var vw;
+        var topBall;
+        var gap = 120; // visual space between HBD and ANANYA (tweak as needed)
+        var pre = -gap/2, post = gap/2; // balanced offsets to keep overall row centered
+
+        function computeLayout() {
+            vw = $(window).width()/2;
+            // Place balloons around vertical middle, slightly above cake area
+            var vh = $(window).height();
+            topBall = Math.max(160, Math.floor(vh * 0.38));
+        }
+
+        computeLayout();
+
+        $(window).resize(function(){
+            computeLayout();
+            $('#b1,#b2,#b3,#b4,#b5,#b6,#b7,#b8,#b9').stop();
+            $('#b11').animate({top: topBall, left: vw-350 + pre},500);
+            $('#b22').animate({top: topBall, left: vw-250 + pre},500);
+            $('#b33').animate({top: topBall, left: vw-150 + pre},500);
+            $('#b44').animate({top: topBall, left: vw-50  + post},500);
+            $('#b55').animate({top: topBall, left: vw+50  + post},500);
+            $('#b66').animate({top: topBall, left: vw+150 + post},500);
+            $('#b77').animate({top: topBall, left: vw+250 + post},500);
+            $('#b88').animate({top: topBall, left: vw+350 + post},500);
+            $('#b99').animate({top: topBall, left: vw+450 + post},500);
+        });
 
 	$('#turn_on').click(function(){
 		$('#bulb_yellow').addClass('bulb-glow-yellow');
@@ -37,7 +52,7 @@ $('document').ready(function(){
 		$('#bulb_green').addClass('bulb-glow-green-after');
 		$('#bulb_pink').addClass('bulb-glow-pink-after');
 		$('#bulb_orange').addClass('bulb-glow-orange-after');
-		$('body').css('backgroud-color','#FFF');
+		$('body').css('background-color','#FFF');
 		$('body').addClass('peach-after');
 		$(this).fadeOut('slow').delay(6000).promise().done(function(){
 			$('#bannar_coming').fadeIn('slow');
@@ -101,16 +116,25 @@ $('document').ready(function(){
 			loopSeven();
 		});
 	}
+	function loopEight() {
+		var randleft = 1000*Math.random();
+		var randtop = 500*Math.random();
+		$('#b8').animate({left:randleft,bottom:randtop},10000,function(){
+			loopEight();
+		});
+	}
+	function loopNine() {
+		var randleft = 1000*Math.random();
+		var randtop = 500*Math.random();
+		$('#b9').animate({left:randleft,bottom:randtop},10000,function(){
+			loopNine();
+		});
+	}
 
 	$('#balloons_flying').click(function(){
 		$('.balloon-border').animate({top:-500},8000);
-		$('#b1,#b4,#b5,#b7').addClass('balloons-rotate-behaviour-one');
-		$('#b2,#b3,#b6').addClass('balloons-rotate-behaviour-two');
-		// $('#b3').addClass('balloons-rotate-behaviour-two');
-		// $('#b4').addClass('balloons-rotate-behaviour-one');
-		// $('#b5').addClass('balloons-rotate-behaviour-one');
-		// $('#b6').addClass('balloons-rotate-behaviour-two');
-		// $('#b7').addClass('balloons-rotate-behaviour-one');
+		$('#b1,#b4,#b5,#b7,#b9').addClass('balloons-rotate-behaviour-one');
+		$('#b2,#b3,#b6,#b8').addClass('balloons-rotate-behaviour-two');
 		loopOne();
 		loopTwo();
 		loopThree();
@@ -118,6 +142,8 @@ $('document').ready(function(){
 		loopFive();
 		loopSix();
 		loopSeven();
+		loopEight();
+		loopNine();
 		
 		$(this).fadeOut('slow').delay(5000).promise().done(function(){
 			$('#cake_fadein').fadeIn('slow');
@@ -140,9 +166,9 @@ $('document').ready(function(){
 
 		
 	$('#wish_message').click(function(){
-		 vw = $(window).width()/2;
+         computeLayout();
 
-		$('#b1,#b2,#b3,#b4,#b5,#b6,#b7').stop();
+		$('#b1,#b2,#b3,#b4,#b5,#b6,#b7,#b8,#b9').stop();
 		$('#b1').attr('id','b11');
 		$('#b2').attr('id','b22')
 		$('#b3').attr('id','b33')
@@ -150,6 +176,8 @@ $('document').ready(function(){
 		$('#b5').attr('id','b55')
 		$('#b6').attr('id','b66')
 		$('#b7').attr('id','b77')
+		$('#b8').attr('id','b88')
+		$('#b9').attr('id','b99')
 		$('#b11').animate({top:240, left: vw-350},500);
 		$('#b22').animate({top:240, left: vw-250},500);
 		$('#b33').animate({top:240, left: vw-150},500);
@@ -157,45 +185,12 @@ $('document').ready(function(){
 		$('#b55').animate({top:240, left: vw+50},500);
 		$('#b66').animate({top:240, left: vw+150},500);
 		$('#b77').animate({top:240, left: vw+250},500);
+		$('#b88').animate({top:240, left: vw+350},500);
+		$('#b99').animate({top:240, left: vw+450},500);
 		$('.balloons').css('opacity','0.9');
 		$('.balloons h2').fadeIn(3000);
-		$(this).fadeOut('slow').delay(3000).promise().done(function(){
-			$('#story').fadeIn('slow');
-		});
-	});
-	
-	$('#story').click(function(){
-		$(this).fadeOut('slow');
-		$('.cake').fadeOut('fast').promise().done(function(){
-			$('.message').fadeIn('slow');
-		});
-		
-		var i;
-
-		function msgLoop (i) {
-			$("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
-			i=i+1;
-			$("p:nth-child("+i+")").fadeIn('slow').delay(1000);
-			if(i==50){
-				$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
-					$('.cake').fadeIn('fast');
-				});
-				
-			}
-			else{
-				msgLoop(i);
-			}			
-
-		});
-			// body...
-		}
-		
-		msgLoop(0);
-		
-	});
+		        // No further steps; hide the button after arranging
+        $(this).fadeOut('slow');
+    });
+    
 });
-
-
-
-
-//alert('hello');

@@ -1056,7 +1056,7 @@ audio {
 	100% {
 		-ms-transform:translate(0px,0px);
 	}
-}o
+}
 @keyframes bannar_come {
 	0%{
 		transform:translate(0px,-1000px);
@@ -1113,6 +1113,12 @@ audio {
 }
 #b7,#b77{
 	background-image: url('b7.png');
+}
+#b8,#b88{
+	background-image: url('b1.png');
+}
+#b9,#b99{
+	background-image: url('b2.png');
 }
 .balloons-rotate-behaviour-one {
 	-webkit-animation: balloons_rotate_one linear 10s infinite;
@@ -1265,7 +1271,14 @@ audio {
 }
 
 .cake-cover {
-	margin-top: 50px;
+  margin-top: 200px;
+}
+
+/* On very short screens, don't push the cake too far down */
+@media (max-height: 700px) {
+  .cake-cover {
+    margin-top: 160px;
+  }
 }
 .message {
 	margin-top: 200px;
@@ -1308,3 +1321,76 @@ audio {
     		-webkit-transform: scale(0.9);
     	}
     }*/
+
+    /* --- Cake image + candle/flame overlay (uses cake.svg) --- */
+    .cake {
+      position: relative; /* keep overlay elements positioned correctly */
+      display: none;       /* revealed by #cake_fadein click */
+      width: 320px;
+      height: 260px;       /* enough height to show image and flame */
+      margin: 0 auto;      /* center within column */
+      background-image: url('cake.svg');
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: contain;
+    }
+
+    /* Hide the old CSS-drawn layers when using the SVG cake image */
+    .cake .cobertura,
+    .cake .bizcocho {
+      display: none !important;
+    }
+
+    /* Candle at top-center of cake */
+    .cake .velas {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 60px;
+      background: rgba(255,255,255,1);
+      border-radius: 8px;
+      box-shadow: inset 0 -8px 0 rgba(255,0,0,0.3);
+    }
+
+    .cake .velas:before,
+    .cake .velas:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: rgba(255,0,0,0.4);
+      border-radius: 3px;
+    }
+
+    .cake .velas:before { top: 25%; }
+    .cake .velas:after  { top: 45%; }
+
+    /* Flame (initially hidden; shown by #light_candle click) */
+    .cake .fuego {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      margin-left: -8px;
+      width: 16px;
+      height: 28px;
+      border-radius: 50%;
+      display: none;
+      box-shadow: 0 0 40px 10px rgba(248,233,209,0.2);
+      animation: fuego 1.5s infinite;
+    }
+
+    /* Stagger the multiple flame elements for a lively effect */
+    .cake .fuego:nth-child(1) { animation-duration: 2s; }
+    .cake .fuego:nth-child(2) { animation-duration: 1.5s; }
+    .cake .fuego:nth-child(3) { animation-duration: 1s; }
+    .cake .fuego:nth-child(4) { animation-duration: 0.5s; }
+    .cake .fuego:nth-child(5) { animation-duration: 0.2s; }
+
+    @keyframes fuego {
+      0%   { background: rgba(254,248,97,0.6); transform: translateY(0) scale(1); }
+      50%  { background: rgba(255,50,0,0.2);   transform: translateY(-50px) scale(0); }
+      100% { background: rgba(254,248,97,0.6); transform: translateY(0) scale(1); }
+    }
