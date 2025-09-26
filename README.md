@@ -18,7 +18,6 @@ A versatile and user-friendly website template designed to celebrate birthdays i
 ![Birthday Animation Screenshot](https://raw.githubusercontent.com/sapthesh/Birthday/master/b3.png)
 ![Birthday Animation Screenshot](https://raw.githubusercontent.com/sapthesh/Birthday/master/b4.png)
 ![Birthday Animation Screenshot](https://raw.githubusercontent.com/sapthesh/Birthday/master/b5.png)
-![Birthday Animation Screenshot](https://raw.githubusercontent.com/sapthesh/Birthday/master/b6.png)
 
 ## 📜 Overview
 
